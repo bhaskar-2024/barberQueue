@@ -90,7 +90,12 @@ const SingleOrder = ({ name, dateString, orderId ,shopOwner}) => {
           >
             Cancel
           </button>
-          
+          <button
+            className="bg-yellow-500 text-white px-4 py-1 rounded-md hover:bg-yellow-600 transition duration-200"
+            onClick={() => updateOrderStatus('hold')}
+          >
+            cancel order
+          </button>
         </div>
         
       )}
