@@ -195,9 +195,9 @@ const QueuePage = () => {
       <div className="bg-gray-800 text-white p-4 flex justify-around items-center">
         <h1 className="text-xl font-bold">Want to order a haircut?</h1>
         
-          {orderStatus && orderStatus === "pending" && <CheckOrder mess = "waiting for confirmation" color="orange" refreshFn={fetchCurrentOrder}/>}
-          {orderStatus && orderStatus === "accepted" && <CheckOrder mess = "you are added to the queue" color="green" refreshFn={fetchCurrentOrder}/>}
-          {orderStatus && orderStatus === "rejected" && <CheckOrder mess = "order rejected , try again after 3 hrs" color="red" refreshFn={fetchCurrentOrder}/>}
+          {currUser && !currUser.shopOwner && orderStatus && orderStatus === "accepted" && <CheckOrder mess = "you are added to the queue" color="green" refreshFn={fetchCurrentOrder}/>}
+          {currUser && !currUser.shopOwner && orderStatus && orderStatus === "rejected" && <CheckOrder mess = "order rejected , try again after 3 hrs" color="red" refreshFn={fetchCurrentOrder}/>}
+          {currUser && !currUser.shopOwner && orderStatus && orderStatus === "pending" && <CheckOrder mess = "waiting for confirmation" color="orange" refreshFn={fetchCurrentOrder}/>}
 
         <div className="space-x-4">
          { currUser && currUser.shopOwner && <button 
