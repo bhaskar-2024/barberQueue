@@ -71,13 +71,13 @@ import jwt from "jsonwebtoken"
 
       const options = {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production', 
-        sameSite: 'strict',
-        maxAge: 3600000*60*60, 
-      }
+        secure: true,
+        sameSite: "None",
+        partitioned : true
+      };
       res
       .status(200)
-      .cookie('access_token', token)
+      .cookie('access_token', token , options)
       .json({ message: 'shop Signup successful' });
 
     } catch (error) {
@@ -124,13 +124,13 @@ import jwt from "jsonwebtoken"
 
       const options = {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production', 
-        sameSite: 'strict',
-        maxAge: 3600000*60*60, 
-      }
+        secure: true,
+        sameSite: "None",
+        partitioned : true
+      };
       res
       .status(200)
-      .cookie('access_token', token)
+      .cookie('access_token', token , options)
       .json({ message: 'Login successful' , user : currUser });
     } catch (error) {
       console.error(error);
@@ -172,10 +172,15 @@ import jwt from "jsonwebtoken"
         { expiresIn: '1d' }
       );
   
-  
+      const options = {
+        httpOnly: true,
+        secure: true,
+        sameSite: "None",
+        partitioned : true
+      };
       res
       .status(200)
-      .cookie('access_token', token)
+      .cookie('access_token', token , options)
       .json({ message: 'Signup successful' });
 
     } catch (error) {
@@ -220,11 +225,17 @@ import jwt from "jsonwebtoken"
 
       const {password : pass, ...currUser} = customer._doc;
       console.log("userdata on login" ,currUser);
-     
+      
+      const options = {
+        httpOnly: true,
+        secure: true,
+        sameSite: "None",
+        partitioned : true
+      };
   
       res
       .status(200)
-      .cookie('access_token', token)
+      .cookie('access_token', token , options)
       .json({ message: 'Login successful' , user : currUser });
     } catch (error) {
       console.error(error);
@@ -278,8 +289,14 @@ const getCurrentCustomer = async (req, res) => {
 
 const logout = (req, res) => {
   try {
+    const options = {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+      partitioned : true
+    };
     
-    res.clearCookie('access_token', { path: '/' })
+    res.clearCookie('access_token', options)
         .status(200)
         .json({ message: 'Logged out successfully' });
   } catch (error) {

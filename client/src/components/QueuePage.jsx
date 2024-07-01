@@ -182,7 +182,7 @@ const QueuePage = () => {
       });
       console.log(response)
       localStorage.removeItem("orderId")
-      setOrderStatus('Order completed , kindly refresh');
+      setOrderStatus('');
       navigate('/queue')
     } catch (error) {
       console.error('Error deleting order:', error);
