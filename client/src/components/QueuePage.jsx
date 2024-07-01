@@ -58,6 +58,10 @@ const QueuePage = () => {
   };
 
   useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if(!loggedInUser) {
+      navigate('/')
+    }
     fetchAcceptedOrders();
     fetchHoldOrders();
   }, []);
